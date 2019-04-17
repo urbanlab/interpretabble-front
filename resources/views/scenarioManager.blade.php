@@ -2,60 +2,67 @@
 
 @section('content')
 
-<div>
+<!-- LIST EVERY SCENARIO -->
+<div id="scenario-manager"> 
     <h1>Liste des scénarios</h1>
-    -Edition
-    -Supression
 
-    <ul>
     @foreach ($items as $item)
-        <li>{{$item->name}} <a href="/scenarios/delete/{{$item->id}}"> Delete</a>
-        {{$item->name}}
-        @foreach ($item->medias as $media)
-          <img src="{{$media}}" width="5%">
-        @endforeach
-        </li>
+      {{$item->name}} | Card_id : {{$item->card_id}} <a href="/scenarios/delete/{{$item->id}}"> Supprimer</a>
+      <div class="table-preview">
+        <div class="persistant-media">
+        </div>
+        <div class="zones-container">
+          @foreach ($item->medias as $media)
+            <div class="zone">
+              <img src="{{$media}}" >
+            </div>
+            @endforeach
+        </div>
+      </div>
     @endforeach
-    </ul>
+    
 </div>
 
 <div>
   
-  <!-- Modal Trigger -->
-  <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Modal</a>
-
-  <!-- Modal Structure -->
-  <div id="modal1" class="modal">
-    <div class="modal-content">
-      <h4>Modal Header</h4>
-      <p>A bunch of text</p>
-    </div>
-    <div class="modal-footer">
-      <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
-    </div>
-  </div>
-</div>
-
+<!-- ADD NEW SCENARIO FORM -->
 <div>
     <h1>Ajouter un nouveau scénario</h1>
     -Preview section
     -Add form
 
     <?php
-        echo Form::open(array('url' => 'scenarios/create', 'method' => 'post'));
+        echo Form::open(array('url' => 'scenarios/create', 'method' => 'post', 'enctype'=>"multipart/form-data"));
+
+        echo Form::token();
 
         echo Form::label('name', 'Nom du scénario');
         echo Form::text('name');
 
         echo '<br>';
 
-        echo Form::label('media', 'Chargez les médias ici');
-        echo Form::text('medias');
+        echo Form::label('media', 'Zone1');
+        echo Form::file('zone1');
+
+        echo '<br>';
+
+        echo Form::label('media', 'Zone2');
+        echo Form::file('zone2');
+
+        echo '<br>';
+
+        echo Form::label('media', 'Zone3');
+        echo Form::file('zone3');
+
+        echo '<br>';
+
+        echo Form::label('media', 'Zone4');
+        echo Form::file('zone4');
 
         echo '<br>';
         
-        echo Form::label('children', "Enfants ratachés à l'item");
-        echo Form::text('children');
+        echo Form::label('card_id', "Id de la carte");
+        echo Form::text('card_id');
 
         echo Form::submit();
 

@@ -16,3 +16,33 @@
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
 }
+
+
+.table-preview {
+
+  .persistant-media{
+    width: 20%;
+    height: 100%;
+    border: dashed 0.4px;
+    margin: 15px;
+    height: 100%;
+    float: left;
+  }
+
+  .zones-container {
+    display: flex;
+    flex-wrap: wrap;
+    width: 25%;
+  }
+
+  .zone {
+    border: dashed 0.4px;
+    margin: 15px;
+    width: 35%;
+
+    img {
+      width: 100%;
+    }
+  }
+
+}

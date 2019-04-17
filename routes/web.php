@@ -23,3 +23,7 @@ Route::post('/scenarios/create', 'ItemController@createItem');
 
 // Deletes an item trough the api
 Route::get('/scenarios/delete/{id}', 'ItemController@deleteItem');
+
+
+// Gets Table current State
+Route::get('/table', 'TableController@getCurrentState');

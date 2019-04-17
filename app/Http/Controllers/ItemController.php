@@ -9,6 +9,7 @@ use GuzzleHttp\Client;
 
 class ItemController extends Controller
 {
+    // Gets all items from API
     public function listItems()
     {
         $client = new Client(); //GuzzleHttp\Client
@@ -19,7 +20,7 @@ class ItemController extends Controller
         return view('scenarioManager', ['items' => $items]);
     }
 
-
+    // Delete an item from API
     public function deleteItem($id)
     {
         $client = new Client(); //GuzzleHttp\Client
@@ -27,16 +28,45 @@ class ItemController extends Controller
         return redirect('scenarios');
     }
 
-
+    // Create an item trought the API
     public function createItem(Request $request)
     {
+
         $client = new Client(); //GuzzleHttp\Client
+
+        // Maps values from the form-data
         $result = $client->post(env('API_URL').'api/item/new', [
-            'form_params' => [
-                'name' => $request->name,
-                'medias' => $request->medias,
-                'children' => $request->children
-            ]
+           'multipart' => [
+                [
+                    'name' => 'name',
+                    'contents' => $request->name,
+                ],
+                [
+                    'name' => 'card_id',
+                    'contents' => $request->card_id
+                ],
+                [
+                    'name'     => 'zone1',
+                    'contents' => fopen( $request->file('zone1')->getPathname(), 'r' ),
+                    'filename' => $request->file('zone1')->getClientOriginalName()
+                ],
+                [
+                    'name'     => 'zone2',
+                    'contents' => fopen( $request->file('zone2')->getPathname(), 'r' ),
+                    'filename' => $request->file('zone2')->getClientOriginalName()
+
+                ],
+                [
+                    'name'     => 'zone3',
+                    'contents' => fopen( $request->file('zone3')->getPathname(), 'r' ),
+                    'filename' => $request->file('zone3')->getClientOriginalName()
+                ],
+                [
+                    'name'     => 'zone4',
+                    'contents' => fopen( $request->file('zone4')->getPathname(), 'r' ),
+                    'filename' => $request->file('zone4')->getClientOriginalName()
+                ],
+           ]
         ]);
         return redirect('scenarios');
     }
