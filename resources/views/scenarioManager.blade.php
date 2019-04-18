@@ -7,7 +7,7 @@
     <h1>Liste des scénarios</h1>
 
     @foreach ($items as $item)
-      {{$item->name}} | Card_id : {{$item->card_id}} <a href="/scenarios/delete/{{$item->id}}"> Supprimer</a>
+      {{$item->name}} | Card_id : {{$item->card_id}} <a href="scenarios/delete/{{$item->id}}"> Supprimer</a>
       <div class="table-preview">
         <div class="persistant-media">
         </div>
