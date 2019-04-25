@@ -14,10 +14,16 @@ class ItemController extends Controller
     {
         $client = new Client(); //GuzzleHttp\Client
         $response = $client->request('GET', env('API_URL').'api/items');
-        
         $items = json_decode($response->getBody()->getContents());
+
+        $response = $client->request('GET', env('API_URL').'api/thematics');
+        $thematics = json_decode($response->getBody()->getContents());
         //var_dump($items);
-        return view('scenarioManager', ['items' => $items]);
+
+        
+
+
+        return view('scenarioManager', ['items' => $items, 'thematics' => $thematics]);
     }
 
     // Delete an item from API
