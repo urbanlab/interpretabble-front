@@ -177,6 +177,9 @@ return [
 
         Collective\Html\HtmlServiceProvider::class,
 
+        // Materialize
+        Skydiver\LaravelMaterializeCSS\MaterializeCSSServiceProvider::class,
+
     ],
 
     /*
@@ -229,6 +232,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
+        'MaterializeCSS' => Skydiver\LaravelMaterializeCSS\MaterializeCSS::class,
 
     ],
 

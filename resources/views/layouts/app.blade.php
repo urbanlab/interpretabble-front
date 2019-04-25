@@ -9,6 +9,19 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">    
+    {!! MaterializeCSS::include_full() !!}
+    
+    <script href="{{ asset('materialize-css/js/materialize.min.js') }}"></script>
+    <!-- TODO Fix this bad import of materialize js -->
+    <script>
+        $(document).ready(function(){
+            $('.collapsible').collapsible();
+            $('.modal').modal();
+            $('select').formSelect();
+        });
+    </script>
+    <!-- ----------------------------- -->
+
     @yield('css')
 </head>
 <body>
