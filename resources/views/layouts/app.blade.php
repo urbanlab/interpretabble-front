@@ -27,12 +27,17 @@
 <body>
     <div id="app">
         <nav>
-            <div class="nav-wrapper">
-                <a href="{{ url('/') }}" class="brand-logo">&nbsp{{ config('app.name', 'Laravel') }}</a>
+            <div class="nav-wrapper blue">
+                <ul id="nav-mobile" class="left hide-on-med-and-down">
+                    <li><a href="table">Table</a></li>
+                    <li><a href="scenarios">Scénarios</a></li>
+                    <li><a href="#">Mise à jour</a></li>
+                </ul>
+                <a href="{{ url('/') }}" class="brand-logo"></a>
             </div>
         </nav>
         @yield('content')
-        <script type="text/javascript" src="{{ URL::asset('js/script.js') }}"></script>
+        
     </div>
     
 </body>

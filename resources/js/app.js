@@ -5,9 +5,9 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-//require('./bootstrap');
+require('./bootstrap');
 //require('bootstrap-sass');
-require('materialize-css');
+
 
 window.Vue = require('vue');
 
@@ -35,4 +35,8 @@ const app = new Vue({
 });
 
 
-          
+  // Or with jQuery
+
+  $(document).ready(function(){
+    $('.modal').modal();
+  });
