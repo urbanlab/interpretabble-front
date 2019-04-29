@@ -1,42 +1,103 @@
-
-/**
- * First we will load all of this project's JavaScript dependencies which
- * includes Vue and other libraries. It is a great starting point when
- * building robust, powerful web applications using Vue and Laravel.
- */
-
-require('./bootstrap');
-//require('bootstrap-sass');
-
-
-window.Vue = require('vue');
-
-/**
- * The following block of code may be used to automatically register your
- * Vue components. It will recursively scan this directory for the Vue
- * components and automatically register them with their "basename".
- *
- * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
- */
-
-// const files = require.context('./', true, /\.vue$/i);
-// files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
-
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
-
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
-
-const app = new Vue({
-    el: '#app'
-});
-
-
-  // Or with jQuery
-
-  $(document).ready(function(){
+$(document).ready(function () {
+    // Init materialize Js features
+    $('.collapsible').collapsible();
     $('.modal').modal();
-  });
+    $('select').formSelect();
+
+
+
+    // TABLE PREVIEW
+    var zones = 0;
+    var form = "#input_zones";
+
+
+    // Gets value form changed input and calls readURL
+    $(document).on('change', '#imgInp', function () {
+        console.log('ON CHANGE INPUT');
+        console.log($(this).data('id'));
+        readURL(this, $(this).data('id'));
+    });
+
+    // Add Zones
+    $('.btn_add_zone').click(function () {
+        switch (zones) {
+            case 0:
+                $('.zones').append('<div class="zone zone1"></div>');
+                $('.zone1').addClass('w100 h100');
+                formGen('.zone1', 'zone1');
+                zones = 1;
+                break;
+            case 1:
+                $('.zones').append('<div class="zone zone2"></div>');
+                $('.zone1').addClass('h50');
+                $('.zone2').addClass('h50');
+                formGen('.zone2', 'zone2');
+                zones = 2;
+                break;
+            case 2:
+                $('.zones').append('<div class="zone zone3"></div>');
+                $('.zone1').addClass('h25');
+                $('.zone2').addClass('h25');
+                $('.zone3').addClass('h50');
+                formGen('.zone3', 'zone3');
+                zones = 3;
+                break;
+            case 3:
+                $('.zones').append('<div class="zone zone4"></div>');
+                $('.zone3').addClass('w50 left');
+                $('.zone4').addClass('w50 h50 left');
+                formGen('.zone4', 'zone4');
+                zones = 4;
+                break;
+        }
+    });
+
+    // Delete Zones
+    $('.btn_delete_zone').click(function () {
+        switch (zones) {
+            case 4:
+                $('.zone4').remove();
+                $('.zone3').removeClass('w50 left');
+                zones = 3;
+                break;
+            case 3:
+                $('.zone3').remove();
+                $('.zone2').removeClass('h25');
+                $('.zone1').removeClass('h25');
+                zones = 2;
+                break;
+            case 2:
+                $('.zone2').remove();
+                $('.zone1').removeClass('h50');
+                zones = 1;
+                break;
+            case 1:
+                $('.zone1').remove();
+                zones = 0;
+                break;
+        }
+
+    });
+
+
+    // Appends the default form
+    function formGen(zoneClass, zoneName) {
+        $(zoneClass).append("<img id='" + zoneName + "' src='#' alt='Image' />");
+        $(form).append("<input name='"+zoneName+"' type='file' id='imgInp' data-id='" + zoneName + "' />");
+    }
+
+    // Gets the file in the input and appends a base 64 image in html
+    function readURL(input, zoneName) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                console.log('test');
+                $('#' + zoneName).attr('src', e.target.result);
+            };
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+});

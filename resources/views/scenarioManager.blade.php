@@ -39,12 +39,20 @@
 
 
 
-  <!-- ADD Item -->
-  <div id="add_item" class="modal">
+<!-- ADD Item -->
+<div id="add_item" class="modal">
     <div class="modal-content">
-    <h4>Ajouter une carte</h4>
+        <h4>Ajouter une carte</h4>
 
-        <?php
+        <button class="btn_add_zone">ADD ZONE</button>
+        <button class="btn_delete_zone">REMOVE ZONE</button>
+        <div class="table_preview">
+            <div class="gabarit"></div>
+            <div class="zones"></div>
+        </div>
+        <div id="form"></div>
+
+    <?php
         echo Form::open(array('url' => 'scenarios/create', 'method' => 'post', 'enctype'=>"multipart/form-data"));
 
         echo Form::token();
@@ -68,12 +76,15 @@
         }
         echo '</select></div>';
 
+        //echo Form::file('card_picture');
+
         echo '</div class="row">';
 
         echo '<br>';
 
-
-        echo Form::label('media', 'Zone1');
+        echo '<div id="input_zones"></div>';
+        
+        /*echo Form::label('media', 'Zone1');
         echo Form::file('zone1');
 
         echo '<br>';
@@ -91,16 +102,15 @@
         echo Form::label('media', 'Zone4');
         echo Form::file('zone4');
 
-        echo '<br>';
+        echo '<br>';*/
 
         echo Form::submit();
 
         echo Form::close();
     ?>
     </div>
-  </div>
+</div>
 
 
 <div>
-@stop
-
+    @stop
