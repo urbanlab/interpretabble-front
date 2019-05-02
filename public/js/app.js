@@ -100,7 +100,7 @@ $(document).ready(function () {
   $('select').formSelect(); // TABLE PREVIEW
 
   var zones = 0;
-  var form = "#input_zones"; // Gets value form changed input and calls readURL
+  var form = "#form"; // Gets value form changed input and calls readURL
 
   $(document).on('change', '#imgInp', function () {
     console.log('ON CHANGE INPUT');
@@ -175,6 +175,7 @@ $(document).ready(function () {
   function formGen(zoneClass, zoneName) {
     $(zoneClass).append("<img id='" + zoneName + "' src='#' alt='Image' />");
     $(form).append("<input name='" + zoneName + "' type='file' id='imgInp' data-id='" + zoneName + "' />");
+    console.log('click');
   } // Gets the file in the input and appends a base 64 image in html
 
 

@@ -8,7 +8,7 @@ $(document).ready(function () {
 
     // TABLE PREVIEW
     var zones = 0;
-    var form = "#input_zones";
+    var form = "#form";
 
 
     // Gets value form changed input and calls readURL
@@ -20,6 +20,7 @@ $(document).ready(function () {
 
     // Add Zones
     $('.btn_add_zone').click(function () {
+        
         switch (zones) {
             case 0:
                 $('.zones').append('<div class="zone zone1"></div>');
@@ -84,6 +85,7 @@ $(document).ready(function () {
     function formGen(zoneClass, zoneName) {
         $(zoneClass).append("<img id='" + zoneName + "' src='#' alt='Image' />");
         $(form).append("<input name='"+zoneName+"' type='file' id='imgInp' data-id='" + zoneName + "' />");
+        console.log('click');
     }
 
     // Gets the file in the input and appends a base 64 image in html

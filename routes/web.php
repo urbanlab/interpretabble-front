@@ -21,6 +21,9 @@ Route::get('/scenarios', 'ItemController@listItems');
 // Creates a new item through the api
 Route::post('/scenarios/create', 'ItemController@createItem');
 
+// Updates a specific item through the api
+Route::post('/scenarios/update/{id}', 'ItemController@updateItem');
+
 // Deletes an item trough the api
 Route::get('/scenarios/delete/{id}', 'ItemController@deleteItem');
 
